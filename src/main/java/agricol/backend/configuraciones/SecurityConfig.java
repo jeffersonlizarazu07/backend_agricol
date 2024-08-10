@@ -51,7 +51,7 @@ public class SecurityConfig {
                                 "/swagger-ui/**")
                         .permitAll()
                         .requestMatchers(VENDEDORES_RESOURCES)
-                        .hasAnyAuthority(UserRoles.VENDEDOR.name(), UserRoles.COMPRADORVENDEDOR.name())
+                        .hasAnyAuthority(UserRoles.VENDEDOR.name(), UserRoles.COMPRADORVENDEDOR.name(), UserRoles.COMPRADOR.name(),  UserRoles.ADMIN.name())
                         .requestMatchers(PUBLIC_RESOURCES).permitAll()
                         .anyRequest().authenticated())
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
