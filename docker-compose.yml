@@ -1,0 +1,34 @@
+
+services:
+  db: # name of the service
+    image: mysql:8.0 # specify image to build container from
+    container_name: microservices_db # name of the container
+    restart: always # restart policy
+    environment: # environment variables
+      MYSQL_ROOT_PASSWORD: "admin" # specify root password
+      MYSQL_USER: "user" # specify user name
+      MYSQL_DATABASE: agricol # specify database name
+      MYSQL_PASSWORD: password # specify password
+    ports:
+      - 3309:3306 # specify port mapping
+    volumes:
+      - db_dataN:/var/lib/mysql # specify volume to persist data
+
+  agricolBackend: # Nombre del servicio para la aplicación backend
+    container_name: agricolBackend # Nombre del contenedor
+    image: imageback # Imagen para construir el contenedor
+    build: ./ # Ruta del Dockerfile para construir la imagen
+    ports:
+      - "8080:8080" # Mapeo de puertos
+    depends_on:
+      - db # Dependencia del servicio de base de datos
+    environment: # Variables de entorno para la conexión a la base de datos
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/agricol
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: password
+
+
+
+
+volumes:
+  db_dataN: # name of the volume
