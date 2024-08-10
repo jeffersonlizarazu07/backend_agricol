@@ -53,8 +53,7 @@ public class ProductoService implements ServicioAbstracto<ProductoRequest, Produ
 
     @Override
     public void delete(Integer id) {
-        usuariorepositorio.findById(id).orElseThrow(()-> new IdNotFoundException("Usuario"));
-        usuariorepositorio.deleteById(id);
+      
     }
 
     @Override

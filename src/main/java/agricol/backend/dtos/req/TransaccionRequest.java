@@ -24,10 +24,10 @@ public class TransaccionRequest {
     private LocalDate fecha;
     
     @Positive(message = "El ID del vendedor debe ser un valor positivo")
-    private int usuarioVendedorId;
+    private String usuarioVendedorId;
     
     @Positive(message = "El ID del comprador debe ser un valor positivo")
-    private int usuarioCompradorId;
+    private String usuarioCompradorId;
     
     @Valid
     private List<ProductoInTransaccionRequest> listaTransacciones;

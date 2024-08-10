@@ -21,7 +21,7 @@ import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
 @Transactional
-public class UsuarioServicio implements ServicioAbstracto<UsuarioRequest, UsuarioResponse, Integer> {
+public class UsuarioServicio implements ServicioAbstracto<UsuarioRequest, UsuarioResponse, String> {
 
 
     @Autowired
@@ -49,7 +49,7 @@ public class UsuarioServicio implements ServicioAbstracto<UsuarioRequest, Usuari
     }
     
     @Override
-    public UsuarioResponse update(UsuarioRequest request, Integer id) {
+    public UsuarioResponse update(UsuarioRequest request, String id) {
         Rol rol = rolRepositori.findById(request.getRolId()).orElseThrow(()-> new IdNotFoundException("rol"));
         usuariorepositorio.findById(id).orElseThrow(()-> new IdNotFoundException("usuario"));
         Usuario usuario = convertUsuarioRequestToEntity(request, rol);
@@ -58,13 +58,13 @@ public class UsuarioServicio implements ServicioAbstracto<UsuarioRequest, Usuari
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(String id) {
         usuariorepositorio.findById(id).orElseThrow(()-> new IdNotFoundException("usuario"));
         usuariorepositorio.deleteById(id);
     }
 
     @Override
-    public UsuarioResponse getById(Integer id) {
+    public UsuarioResponse getById(String id) {
         Usuario usuario = usuariorepositorio.findById(id).orElseThrow(()-> new IdNotFoundException("usuario"));
         return convertUsuarioToResponse(usuario);
     }

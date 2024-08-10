@@ -34,7 +34,7 @@ public class ProductoRequest {
     private double precio;
 
     @Positive(message = "El ID del vendedor debe ser un valor positivo")
-    private int vendedorid;
+    private String vendedorid;
 
     @Positive(message = "El ID de la unidad de comercialización debe ser un valor positivo")
     private int unidComercializacionid;

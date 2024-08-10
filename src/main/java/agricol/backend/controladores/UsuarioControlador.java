@@ -41,14 +41,14 @@ public class UsuarioControlador {
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity<UsuarioResponse> putMethodName(@PathVariable int id, @RequestBody @Validated UsuarioRequest request){
+    public ResponseEntity<UsuarioResponse> putMethodName(@PathVariable String id, @RequestBody @Validated UsuarioRequest request){
         UsuarioResponse response = usuarioServicio.update(request, id);
         return ResponseEntity.ok(response);
     }
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<UsuarioResponse> getMethodUsingId(@PathVariable int id) {
+    public ResponseEntity<UsuarioResponse> getMethodUsingId(@PathVariable String id) {
         return ResponseEntity.ok(usuarioServicio.getById(id));
     }
 

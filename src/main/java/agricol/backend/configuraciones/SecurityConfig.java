@@ -7,6 +7,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.JwtDecoders;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -14,16 +16,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import agricol.backend.utiles.UserRoles;
 import lombok.AllArgsConstructor;
 
-
 @Configuration
-@EnableWebSecurity //1. Anotación configurar Spring Security
+@EnableWebSecurity // 1. Anotación configurar Spring Security
 @AllArgsConstructor
 
 public class SecurityConfig {
 
     // 2. Declarar rutas publicas
     private final String[] PUBLIC_RESOURCES = {
-        "/auth/**"
+            "/auth/**"
 
     };
     // Declarar rutas de administrador
@@ -49,9 +50,12 @@ public class SecurityConfig {
                                 "/v3/api-docs/**",
                                 "/swagger-ui/**")
                         .permitAll()
-                        .requestMatchers(VENDEDORES_RESOURCES).hasAnyAuthority(UserRoles.VENDEDOR.name(), UserRoles.COMPRADORVENDEDOR.name())
+                        .requestMatchers(VENDEDORES_RESOURCES)
+                        .hasAnyAuthority(UserRoles.VENDEDOR.name(), UserRoles.COMPRADORVENDEDOR.name())
                         .requestMatchers(PUBLIC_RESOURCES).permitAll()
-                        .anyRequest().permitAll())
+                        .anyRequest().authenticated())
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
+                // .anyRequest().permitAll())
                 .httpBasic(Customizer.withDefaults())
                 .cors(Customizer.withDefaults()); // Permitir todos los request sin autorización
         return http.build();
@@ -60,6 +64,11 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public JwtDecoder jwtDecoder() {
+        return JwtDecoders.fromIssuerLocation("https://dev-qgefcwj5v0jnwoh2.us.auth0.com/");
     }
 
     @Bean
@@ -73,7 +82,5 @@ public class SecurityConfig {
             }
         };
     }
-
-   
 
 }

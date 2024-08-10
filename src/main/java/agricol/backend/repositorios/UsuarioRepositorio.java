@@ -8,6 +8,6 @@ import agricol.backend.entidades.Usuario;
 
 
 @Repository
-public interface UsuarioRepositorio extends JpaRepository<Usuario, Integer> {
+public interface UsuarioRepositorio extends JpaRepository<Usuario, String> {
     public Usuario findByEmail(String email);
 }
