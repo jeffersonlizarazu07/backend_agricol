@@ -18,6 +18,7 @@ public class JWTUtil {
         return JWT.create()
                 .withSubject(email)
                 .withIssuer("AgricolV1")
+                .withClaim("Prueba", "modificando")
                 .withIssuedAt(new Date())
                 .withExpiresAt(new Date(System.currentTimeMillis() + TimeUnit.DAYS.toMillis(15)))
                 .sign(Algorithm.HMAC256(SECRET_KEY));

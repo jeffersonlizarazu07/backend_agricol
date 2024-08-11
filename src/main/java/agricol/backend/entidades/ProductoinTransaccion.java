@@ -33,6 +33,8 @@ public class ProductoinTransaccion{
     @ManyToOne
     @JoinColumn(name = "transaccion_id", referencedColumnName = "idTransaccion")
     private Transaccion transaccion;
+
+    private Double total;
     
 }
 

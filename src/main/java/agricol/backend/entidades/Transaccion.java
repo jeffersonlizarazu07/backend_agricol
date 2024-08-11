@@ -29,6 +29,7 @@ public class Transaccion {
     
     private String medioDePago;
     private LocalDate fecha;
+    private Double total;
 
     @ManyToOne
     @JoinColumn(name="vendedor_id", referencedColumnName = "idusuario")
