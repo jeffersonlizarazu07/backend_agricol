@@ -38,4 +38,8 @@ public class ProductoRequest {
 
     @Positive(message = "El ID de la unidad de comercialización debe ser un valor positivo")
     private int unidComercializacionid;
+
+    @NotBlank(message = "La imagen URL no puede estar vacía")
+    @Size(max = 200, message = "La imagen URL no puede tener más de 200 caracteres")
+    private String imagenUrl;
 }

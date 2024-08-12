@@ -15,4 +15,5 @@ public class ProductoResponseBasic {
     private String localizacion;
     private double precio;
     private UnidComercializacion unid;
+    private String imagenUrl;
 }

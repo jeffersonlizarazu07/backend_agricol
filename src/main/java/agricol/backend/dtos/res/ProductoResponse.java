@@ -17,4 +17,5 @@ public class ProductoResponse {
     private double precio;
     private UnidComercializacion unid;
     private UsuarioResponse vendedor;
+    private String imagenUrl;
 }
