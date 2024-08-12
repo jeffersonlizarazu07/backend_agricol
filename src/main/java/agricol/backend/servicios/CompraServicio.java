@@ -1,6 +1,7 @@
 package agricol.backend.servicios;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import agricol.backend.dtos.req.CompraRequest;
 import agricol.backend.dtos.res.CompraResponse;
 import agricol.backend.dtos.res.ProductoInTransaccionResponse;
+import agricol.backend.dtos.res.TransaccionResponse;
 import agricol.backend.entidades.Producto;
 import agricol.backend.entidades.ProductoinTransaccion;
 import agricol.backend.entidades.Transaccion;
@@ -20,6 +22,7 @@ import agricol.backend.repositorios.TransaccionRepositorio;
 import agricol.backend.repositorios.UsuarioRepositorio;
 import agricol.backend.servicios.Inetrfaz.ICompraServicio;
 import agricol.backend.utiles.mappers.ComprasMapper;
+import agricol.backend.utiles.mappers.TransaccionesMapper;
 import lombok.AllArgsConstructor;
 
 @Transactional
@@ -29,6 +32,9 @@ public class CompraServicio implements ICompraServicio{
 
     @Autowired
     private final ComprasMapper comprasMapper;
+
+    @Autowired
+    private final TransaccionesMapper transaccionesMapper;
 
     @Autowired
     private final TransaccionRepositorio transaccionRepositorio;
@@ -71,10 +77,15 @@ public class CompraServicio implements ICompraServicio{
         tCreada.setTotal(producto.getPrecio()*request.getCantidad());
         transaccionRepositorio.save(tCreada);
 
+        return compraresult;
+    }
+    @Override
+    public List<TransaccionResponse> misCompras(String idComprador) {
+        Usuario usuarioComprador = usuarioRepositorio.findById(idComprador).orElseThrow(()-> new IdNotFoundException("Comprador"));
+        List<Transaccion> misCompras = transaccionRepositorio.findByUsuarioComprador(usuarioComprador);
         
 
-
-        return compraresult;
+        return transaccionesMapper.lsitaToListaResponse(misCompras);
     }
 
    
