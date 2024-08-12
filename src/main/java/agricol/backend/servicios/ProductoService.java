@@ -65,6 +65,7 @@ public class ProductoService implements ServicioAbstracto<ProductoRequest, Produ
     public ProductoResponse convertProductoToResponse(Producto producto) {
         ProductoResponse response = new ProductoResponse();
         BeanUtils.copyProperties(producto, response);
+        response.setUnid(producto.getUnidComercializacion());
         response.setVendedor(convertUsuarioToResponse(producto.getVendedor()));
         return response;        
     }

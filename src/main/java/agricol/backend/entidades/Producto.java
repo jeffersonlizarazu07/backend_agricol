@@ -28,6 +28,7 @@ public class Producto {
     private String localizacion;
     private double precio;
     private String imagenUrl;
+    private String descripcion;
     
     @ManyToOne
     @JoinColumn(name = "vendedor_id", referencedColumnName = "idusuario")

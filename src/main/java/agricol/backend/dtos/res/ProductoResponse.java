@@ -14,6 +14,7 @@ public class ProductoResponse {
     private String clasificacion;
     private double cantidaDisponible;
     private String localizacion;
+    private String descripcion;
     private double precio;
     private UnidComercializacion unid;
     private UsuarioResponse vendedor;
