@@ -12,5 +12,7 @@ public interface ICompraServicio  {
     CompraResponse abrirTransaccion( String idComprador ,CompraRequest request);
 
     List<TransaccionResponse> misCompras(String idComprador);
+
+    List<TransaccionResponse> misVentas(String idVendedor);
     
 }

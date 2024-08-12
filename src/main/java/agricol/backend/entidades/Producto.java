@@ -1,6 +1,8 @@
 package agricol.backend.entidades;
 
 import java.util.List;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,6 +29,7 @@ public class Producto {
     private double cantidaDisponible;
     private String localizacion;
     private double precio;
+   
     private String imagenUrl;
     
     @ManyToOne

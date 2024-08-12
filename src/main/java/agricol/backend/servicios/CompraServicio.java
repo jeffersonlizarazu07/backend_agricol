@@ -87,6 +87,12 @@ public class CompraServicio implements ICompraServicio{
 
         return transaccionesMapper.lsitaToListaResponse(misCompras);
     }
+    @Override
+    public List<TransaccionResponse> misVentas(String idVendedor) {
+        Usuario usuarioVendedor = usuarioRepositorio.findById(idVendedor).orElseThrow(()-> new IdNotFoundException("Vendedor"));
+        List<Transaccion> misCompras = transaccionRepositorio.findByUsuarioVendedor(usuarioVendedor);
+        return transaccionesMapper.lsitaToListaResponse(misCompras);
+    }
 
    
    
