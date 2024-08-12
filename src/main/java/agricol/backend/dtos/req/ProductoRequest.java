@@ -42,4 +42,7 @@ public class ProductoRequest {
     @NotBlank(message = "La imagen URL no puede estar vacía")
     @Size(max = 200, message = "La imagen URL no puede tener más de 200 caracteres")
     private String imagenUrl;
+
+    @Size(max = 255, message = "La descripción no puede tener más de 255 caracteres")
+    private String descripcion;
 }

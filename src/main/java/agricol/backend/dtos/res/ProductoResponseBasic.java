@@ -13,6 +13,7 @@ public class ProductoResponseBasic {
     private String nombreProducto;
     private String clasificacion;
     private String localizacion;
+    private String descripcion;
     private double precio;
     private UnidComercializacion unid;
     private String imagenUrl;
