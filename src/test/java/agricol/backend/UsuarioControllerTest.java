@@ -111,7 +111,7 @@ public class UsuarioControllerTest {
                  
 }
     @Test
-    public void testPuth() throws Exception {
+    public void testPut() throws Exception {
         // Crear un mock de RolResponse para el usuario que se va a actualizar
         Rol vendedorRole = new Rol();
         vendedorRole.setIdrol(1);
