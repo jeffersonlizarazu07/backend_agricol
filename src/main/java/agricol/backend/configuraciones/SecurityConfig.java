@@ -55,9 +55,9 @@ public class SecurityConfig {
                         .requestMatchers(VENDEDORES_RESOURCES)
                         .hasAnyAuthority(UserRoles.VENDEDOR.name(), UserRoles.COMPRADORVENDEDOR.name(), UserRoles.COMPRADOR.name(), UserRoles.ADMIN.name())
                         .requestMatchers(PUBLIC_RESOURCES).permitAll()
-                //         .anyRequest().authenticated())
+                        .anyRequest().permitAll()
+                        )
                 // .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
-                .anyRequest().permitAll())
                 .httpBasic(Customizer.withDefaults())
                 .cors(Customizer.withDefaults()); // Permitir todos los request sin autorización
         return http.build();

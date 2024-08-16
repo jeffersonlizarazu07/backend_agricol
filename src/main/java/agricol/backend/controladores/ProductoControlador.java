@@ -33,7 +33,7 @@ public class ProductoControlador {
         @RequestParam(defaultValue = "1") int page,
         @RequestParam(defaultValue = "10") int size
     ) {
-        return  ResponseEntity.ok(productoServicio.getAll(page, size));
+        return  ResponseEntity.ok(productoServicio.getAll(page-1, size));
     }
     
     @PostMapping("/create")

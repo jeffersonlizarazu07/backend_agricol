@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import agricol.backend.dtos.req.CompraRequest;
 import agricol.backend.dtos.res.CompraResponse;
-import agricol.backend.dtos.res.ProductoInTransaccionResponse;
 import agricol.backend.dtos.res.TransaccionResponse;
 import agricol.backend.entidades.Producto;
 import agricol.backend.entidades.ProductoinTransaccion;
