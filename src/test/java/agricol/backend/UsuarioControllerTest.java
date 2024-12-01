@@ -53,7 +53,7 @@ public class UsuarioControllerTest {
         vendedorRole.setNombreRol(UserRoles.COMPRADOR);
         
         // Crear un mock de UsuarioResponse basado en los datos proporcionados
-        UsuarioResponse usuarioMock = new UsuarioResponse(11111111, "Romario", "Julio", "Calle 19", "roma@jul.com", vendedorRole);        
+        UsuarioResponse usuarioMock = new UsuarioResponse(11111111, "Zobeida", "Beltran", "Calle 19", "beltranzobeida@.com", vendedorRole);        
 
         // Crear una página que contiene este usuario
         Page<UsuarioResponse> usuarioPage = new PageImpl<>(
@@ -79,17 +79,17 @@ public class UsuarioControllerTest {
 
         // Crear el mock de UsuarioRequest que se enviará en la solicitud
         UsuarioRequest usuarioRequest = new UsuarioRequest();
-        usuarioRequest.setNombre("Romario");
-        usuarioRequest.setApellido("Julio");
+        usuarioRequest.setNombre("Zobeida");
+        usuarioRequest.setApellido("Beltran");
         usuarioRequest.setDireccion("Calle 19");
-        usuarioRequest.setEmail("roma@jul.com");
+        usuarioRequest.setEmail("beltranzobeida@.com");
         usuarioRequest.setRolId(vendedorRole.getIdrol());
         usuarioRequest.setContrasena("password123");
         usuarioRequest.setIdusuario("11111111");
-        usuarioRequest.setUsuario("romajul");
+        usuarioRequest.setUsuario("zobeldi");
 
         // Crear el mock de UsuarioResponse que se espera como respuesta
-        UsuarioResponse usuarioResponse = new UsuarioResponse(11111111, "Romario", "Julio", "Calle 19", "roma@jul.com", vendedorRole);
+        UsuarioResponse usuarioResponse = new UsuarioResponse(11111111, "Zobeida", "Beltran", "Calle 19", "beltranzobeida@.com", vendedorRole);
 
         // Configurar el mock del servicio para que devuelva la respuesta simulada cuando se llame al método create
         given(usuarioService.create(any(UsuarioRequest.class))).willReturn(usuarioResponse);
@@ -97,14 +97,14 @@ public class UsuarioControllerTest {
         // Ejecutar la solicitud POST y verificar la respuesta
         mockMvc.perform(post("/Usuarios")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{ \"nombre\": \"Romario\", \"apellido\": \"Julio\", \"direccion\": \"Calle 19\", \"email\": \"roma@jul.com\", \"usuario\": \"romajul\", \"rolId\": 1, \"contrasena\": \"password123\" }"))
+                .content("{ \"nombre\": \"Zobeida\", \"apellido\": \"Beltran\", \"direccion\": \"Calle 19\", \"email\": \"beltranzobeida@.com\", \"usuario\": \"zobeldi\", \"rolId\": 1, \"contrasena\": \"password123\" }"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.idusuario").value(11111111))
-                .andExpect(jsonPath("$.nombre").value("Romario"))
-                .andExpect(jsonPath("$.apellido").value("Julio"))
+                .andExpect(jsonPath("$.nombre").value("Zobeida"))
+                .andExpect(jsonPath("$.apellido").value("Beltran"))
                 .andExpect(jsonPath("$.direccion").value("Calle 19"))
-                .andExpect(jsonPath("$.email").value("roma@jul.com"))
+                .andExpect(jsonPath("$.email").value("beltranzobeida@.com"))
                 .andExpect(jsonPath("$.rol.idrol").value(1))
                 .andExpect(jsonPath("$.rol.nombreRol").value("COMPRADOR"))
                 .andDo(result -> System.out.println(result.getResponse().getContentAsString()));
@@ -119,17 +119,17 @@ public class UsuarioControllerTest {
 
         // Crear el mock de UsuarioRequest que se enviará en la solicitud
         UsuarioRequest usuarioRequest = new UsuarioRequest();
-        usuarioRequest.setNombre("Romario");
-        usuarioRequest.setApellido("Julio");
+        usuarioRequest.setNombre("Zobeida");
+        usuarioRequest.setApellido("Beltran");
         usuarioRequest.setDireccion("Calle 19");
-        usuarioRequest.setEmail("roma@jul.com");
+        usuarioRequest.setEmail("beltranzobeida@.com");
         usuarioRequest.setRolId(vendedorRole.getIdrol());
         usuarioRequest.setContrasena("password123");
         usuarioRequest.setIdusuario("11111111");
-        usuarioRequest.setUsuario("romajul");
+        usuarioRequest.setUsuario("zobeldi");
 
         // Crear el mock de UsuarioResponse que se espera como respuesta
-        UsuarioResponse usuarioResponse = new UsuarioResponse(11111111, "Romario", "Julio", "Calle 19", "roma@jul.com", vendedorRole);
+        UsuarioResponse usuarioResponse = new UsuarioResponse(11111111, "Zobeida", "Julio2", "Calle 19", "beltranzobeida.com", vendedorRole);
        
         usuarioRequest.setApellido("julio2");
         usuarioResponse.setApellido("julio2");
@@ -137,14 +137,14 @@ public class UsuarioControllerTest {
 
         mockMvc.perform(put("/Usuarios/{id}", 11111111)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{ \"nombre\": \"Romario\", \"apellido\": \"julio2\", \"direccion\": \"Calle 19\", \"email\": \"roma@jul.com\", \"usuario\": \"romajul\", \"rolId\": 1, \"contrasena\": \"password123\" }"))
+                .content("{ \"nombre\": \"Zobeida\", \"apellido\": \"julio2\", \"direccion\": \"Calle 19\", \"email\": \"beltranzobeida@.com\", \"usuario\": \"zobeldi\", \"rolId\": 1, \"contrasena\": \"password123\" }"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.idusuario").value(11111111))
-                .andExpect(jsonPath("$.nombre").value("Romario"))
+                .andExpect(jsonPath("$.nombre").value("Zobeida"))
                 .andExpect(jsonPath("$.apellido").value("julio2"))
                 .andExpect(jsonPath("$.direccion").value("Calle 19"))
-                .andExpect(jsonPath("$.email").value("roma@jul.com"))
+                .andExpect(jsonPath("$.email").value("beltranzobeida@jul.com"))
                 .andExpect(jsonPath("$.rol.idrol").value(1))
                 .andExpect(jsonPath("$.rol.nombreRol").value("COMPRADOR"))
                 .andDo(result -> System.out.println(result.getResponse().getContentAsString()+ " " +"Zobeida"));
@@ -156,3 +156,4 @@ public class UsuarioControllerTest {
     }
 
 }
+

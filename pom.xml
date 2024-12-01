@@ -18,7 +18,10 @@
     	<mapstruct.version>1.5.5.Final</mapstruct.version>
 		<org.projectlombok.version>1.18.16</org.projectlombok.version>
 		<org.lombok-mapstruct-binding>0.2.0</org.lombok-mapstruct-binding>
+
 	</properties>
+
+
 	<dependencies>
 	
 		<dependency>
@@ -88,13 +91,14 @@
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
 			<version>${org.projectlombok.version}</version>
-		</dependency>	
+		</dependency>
 
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
 			<version>${mapstruct.version}</version>
 		</dependency>
+
 
 	<!--  TESTING APP  -->
 	<!-- Dependencia para pruebas en Spring Boot (incluye JUnit 5) -->

@@ -12,7 +12,8 @@ services:
     ports:
       - 3309:3306 # specify port mapping
     volumes:
-      - db_dataN:/var/lib/mysql # specify volume to persist data
+      - db_dataN:/var/lib/mysql # specify volume to persist data 
+      
 
   agricolBackend: # Nombre del servicio para la aplicación backend
     container_name: agricolBackend # Nombre del contenedor
